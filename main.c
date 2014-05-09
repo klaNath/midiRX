@@ -7,3 +7,8 @@
  *  For details, see the https://github.com/klaNath/midiRX.git/LICENSE
  *
  */
+
+#include <xc.h>
+#include "MIDIRX.h"
+#include "fm1001.h"
+

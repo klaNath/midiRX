@@ -7,3 +7,11 @@
  *  For details, see the https://github.com/klaNath/midiRX.git/LICENSE
  *
  */
+
+#ifndef _MIDIRX_H
+#define _MIDIRX_H
+
+
+
+
+#endif
