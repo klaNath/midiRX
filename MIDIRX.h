@@ -13,6 +13,7 @@
 
 enum MIDI_RX_STATUS
 {
+    NONE,
     NOTE_ON,
     NOTE_OFF,
     ACTSENSE,
@@ -21,6 +22,9 @@ enum MIDI_RX_STATUS
 };
 
 
+void inputMIDI(unsigned char*);
+int readMIDI();
+void clearMIDI();
 
 
 
