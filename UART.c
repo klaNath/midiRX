@@ -33,4 +33,6 @@ unsigned char readUART()
     unsigned char rslt;
 
     rslt = RCREG;
+
+    return(rslt);
 }
