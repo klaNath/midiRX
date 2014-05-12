@@ -11,6 +11,19 @@
 #ifndef _MIDIRX_H
 #define _MIDIRX_H
 
+enum MIDI_RX_STATUS
+{
+    NOTE_ON,
+    NOTE_OFF,
+    ACTSENSE,
+    SYSEX,
+    OTHER
+};
+
+
+
+
+
 
 
 
