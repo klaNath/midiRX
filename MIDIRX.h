@@ -33,6 +33,7 @@ enum MIDI_BUF_STATUS
 
 
 void getMIDI();
+unsigned char validMIDI();
 unsigned char getStatus();
 unsigned char getNote();
 unsigned char getVel();
