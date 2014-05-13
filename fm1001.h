@@ -11,7 +11,10 @@
 #ifndef _FM1001_H
 #define _FM1001_H
 
+void initFM(void);
 
+unsigned char getSendCh(unsigned char);
+unsigned char sendFM(unsigned char, unsigned char, unsigned char);
 
 
 #endif
