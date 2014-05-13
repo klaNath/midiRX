@@ -30,7 +30,7 @@ void main(void)
 
     while(1)
     {
-        if(decodeMIDI() == 1)   state = getStatus();
+        if(validMIDI() == 1)   state = getStatus();
 
         if(state == NOTE_ON)
         {
@@ -47,4 +47,10 @@ void main(void)
             sendFM(note, och, 0);
         }
     }
+}
+
+void initSys()
+{
+
+
 }
