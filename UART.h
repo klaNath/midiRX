@@ -27,8 +27,8 @@ enum UART_INIT_STATE
     UART_BOTH
 };
 
-void initUART();
-unsigned char readUART(UART_INIT_STATE);
+void initUART(UART_INIT_STATE);
+unsigned char readUART();
 
 #endif
 
