@@ -12,3 +12,9 @@
 #include "MIDIRX.h"
 #include "fm1001.h"
 
+
+
+void interrupt IRQ()
+{
+    if(PIE1bits.RCIE == 1) getMIDI();
+}
