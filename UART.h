@@ -19,9 +19,16 @@
 #ifndef _UART_H
 #define _UART_H
 
+enum UART_INIT_STATE
+{
+    UART_NONE,
+    UART_RX_ONLY,
+    UART_TX_ONLY,
+    UART_BOTH
+};
 
-void initUARTRX();
-unsigned char readUART();
+void initUART();
+unsigned char readUART(UART_INIT_STATE);
 
 #endif
 
