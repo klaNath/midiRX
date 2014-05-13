@@ -1,6 +1,6 @@
 /*
  *
- *  MIDI Reciever   Version 0.1
+ *  MIDI Reciever   Version 0.2
  *  (C) 2014 Kazusa Okuda (a.k.a. klaNath)
  *
  *  This software is freely distributable under the terms of an MIT-style license.
@@ -21,14 +21,21 @@ enum MIDI_RX_STATUS
     OTHER
 };
 
+enum MIDI_BUF_STATUS
+{
+    EMPTY,
+    VALID,
+    FULL
+};
 
-void inputMIDI(unsigned char*);
-int readMIDI();
+
+void getMIDI();
+unsigned char getStatus();
+unsigned char getNote();
+unsigned char getVel();
 void clearMIDI();
 
-
-
-
+unsigned char statusMIDI();
 
 
 #endif
