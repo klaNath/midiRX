@@ -12,11 +12,16 @@
 #include "MIDIRX.h"
 #include "fm1001.h"
 
+__CONFIG(CLKOUTEN_OFF & FOSC_INTOSC & FCMEN_OFF & IESO_OFF & BOREN_ON & PWRTE_ON
+& WDTE_OFF & MCLRE_OFF & CP_OFF & CPD_OFF) ;
+__CONFIG(PLLEN_ON & STVREN_ON & WRT_OFF & BORV_HI & LVP_OFF);
+
+
 void initSys(void);
 
 void interrupt IRQ()
 {
-    if(PIE1bits.RCIE == 1) getMIDI();
+    if(PIR1bits.RCIF == 1) getMIDI();
 }
 
 
@@ -51,6 +56,12 @@ void main(void)
 
 void initSys()
 {
-
-
+    OSCCON = 0x0F2;
+    OPTION_REG = 0xD0;
+    TRISA = 0x38;
+    ANSELA = 0;
+    INTCON = 0xC0;
+    //PIE1 = 0x20;                                                  //move to initUART()
+    
+    initUART(UART_RX_ONLY);
 }
