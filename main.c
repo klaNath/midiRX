@@ -64,4 +64,5 @@ void initSys()
     //PIE1 = 0x20;                                                  //move to initUART()
     
     initUART(UART_RX_ONLY);
+    initFM();
 }
