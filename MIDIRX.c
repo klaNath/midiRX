@@ -47,6 +47,7 @@ void getMIDI()
     if(DecodeState == NONE)
     {
         Decoded = 0;
+        Parse_Done = 0;
         switch(rxd & 0xF0)
         {
             case    0x90    : DecodeState = NOTE_ON_1;
@@ -97,12 +98,14 @@ void getMIDI()
         case    NOTE_ON_2   : Decoded.MidiVel = rxd;
                                              DecodeState = NONE;
                                              if(Decoded.MidiVel = 0) Decoded.MidiState = NOTE_OFF;
+                                             Parse_Done = 1;
                                              break;
         case    NOTE_OFF_1  : Decoded.MidiNote = rxd;
                                              DecodeState = NOTE_OFF_2;
                                              break;
         case    NOTE_OFF_2  : Decoded.MidiVel = rxd;
                                              DecodeState = NONE;
+                                             Parse_Done = 1;
                                              break;
         case    SYSEX_ON      : if(rxd == 0xF7) DecodeState = NONE;
                                              break;
