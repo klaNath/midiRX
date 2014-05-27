@@ -51,5 +51,4 @@ unsigned char getVel();
 void clearMIDI();
 
 
-
 #endif

@@ -37,7 +37,8 @@ void interrupt IRQ()
 void main(void)
 {
 
-    unsigned char state, note, och;
+    unsigned char note, och;
+    MIDI_RX_STATUS state;
 
     initSys();
 

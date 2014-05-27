@@ -20,22 +20,22 @@
 #include <xc.h>
 
 
-void initUARTRX(UART_INIT_STATE argv)
+void initUART(UART_INIT_STATE argv)
 {
     if(argv == UART_RX_ONLY)
     {
         TXSTA = 0;
         RCSTA = 0x90;
         BAUDCON = 0;
-        SPBRGL = 3;
+        SPBRGL = 15;
+    }
+    else
+    {
+        return;
     }
 }
 
 unsigned char readUART()
 {
-    unsigned char rslt;
-
-    rslt = RCREG;
-
-    return(rslt);
+    return(RCREG);
 }
