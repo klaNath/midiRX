@@ -109,3 +109,30 @@ void getMIDI()
     }
     return;
 }
+
+MIDI_RX_STATUS getStatus()
+{
+    return(Decoded.MidiState);
+}
+
+unsigned char getChannel()
+{
+    return(Decoded.MidiCh);
+}
+
+unsigned char getNote()
+{
+    return(Decoded.MidiNote);
+}
+
+unsigned char getVel()
+{
+    return(Decoded.MidiVel);
+}
+
+void clearMIDI()
+{
+    Decoded = 0;
+    DecodeState = NONE;
+    Parse_Done = 0;
+}
