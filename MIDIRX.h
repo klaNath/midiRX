@@ -45,11 +45,11 @@ extern unsigned char Parse_Done;
 
 void getMIDI();
 unsigned char getStatus();
+unsigned char getChannel();
 unsigned char getNote();
 unsigned char getVel();
 void clearMIDI();
 
-unsigned char statusMIDI();
 
 
 #endif
