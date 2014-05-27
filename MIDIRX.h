@@ -31,6 +31,17 @@ enum MIDI_BUF_STATUS
     FULL
 };
 
+struct DECODED_DATA
+{
+    MIDI_RX_STATUS MidiState;
+    unsigned char MidiCh,
+                            MidiNote,
+                            MidiVel;
+};
+
+
+extern unsigned char Parse_Done;
+
 
 void getMIDI();
 unsigned char validMIDI();

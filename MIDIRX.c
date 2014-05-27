@@ -27,15 +27,8 @@ enum DECODE_STATE
     OTHER2_1                                                            //CnH, DnH first Byte
 } DecodeState;
 
-struct
-{
-    MIDI_RX_STATUS MidiState;
-    unsigned char MidiCh,
-                            MidiNote,
-                            MidiVel;
-}Decoded;
 
-
+struct DECODED_DATA Decoded;
 
 void getMIDI()
 {
