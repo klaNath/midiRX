@@ -16,12 +16,17 @@ __CONFIG(CLKOUTEN_OFF & FOSC_INTOSC & FCMEN_OFF & IESO_OFF & BOREN_ON & PWRTE_ON
 & WDTE_OFF & MCLRE_OFF & CP_OFF & CPD_OFF) ;
 __CONFIG(PLLEN_ON & STVREN_ON & WRT_OFF & BORV_HI & LVP_OFF);
 
+char rx_Done = 0;
 
 void initSys(void);
 
 void interrupt IRQ()
 {
-    if(PIR1bits.RCIF == 1) getMIDI();
+    if(PIR1bits.RCIF == 1)
+    {
+        rx_Done = 1;
+        PIR1bits.RCIF = 0;
+    }
 }
 
 
@@ -35,7 +40,9 @@ void main(void)
 
     while(1)
     {
-        if(validMIDI() == 1)   state = getStatus();
+        if(rx_Done == 1) getMIDI();  
+        if(Parse_Done == 1)   state = getStatus();
+
 
         if(state == NOTE_ON)
         {
@@ -66,3 +73,4 @@ void initSys()
     initUART(UART_RX_ONLY);
     initFM();
 }
+

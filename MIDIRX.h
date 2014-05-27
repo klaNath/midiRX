@@ -44,7 +44,6 @@ extern unsigned char Parse_Done;
 
 
 void getMIDI();
-unsigned char validMIDI();
 unsigned char getStatus();
 unsigned char getNote();
 unsigned char getVel();
