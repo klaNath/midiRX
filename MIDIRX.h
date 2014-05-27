@@ -33,7 +33,7 @@ enum MIDI_BUF_STATUS
 
 struct DECODED_DATA
 {
-    MIDI_RX_STATUS MidiState;
+    enum MIDI_RX_STATUS MidiState;
     unsigned char MidiCh,
                             MidiNote,
                             MidiVel;
@@ -44,7 +44,7 @@ extern unsigned char Parse_Done;
 
 
 void getMIDI();
-MIDI_RX_STATUS getStatus();
+enum MIDI_RX_STATUS getStatus();
 unsigned char getChannel();
 unsigned char getNote();
 unsigned char getVel();
