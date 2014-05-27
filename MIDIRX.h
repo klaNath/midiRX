@@ -1,6 +1,6 @@
 /*
  *
- *  MIDI Reciever   Version 0.2
+ *  MIDI Reciever   Version 0.3
  *  (C) 2014 Kazusa Okuda (a.k.a. klaNath)
  *
  *  This software is freely distributable under the terms of an MIT-style license.

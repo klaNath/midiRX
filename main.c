@@ -1,6 +1,6 @@
 /*
  *
- *  MIDI Reciever and FM Audio Generator Controller Firmware  Version 0.1
+ *  MIDI Reciever and FM Audio Generator Controller Firmware  Version 0.2
  *  (C) 2014 Kazusa Okuda (a.k.a. klaNath)
  *
  *  This software is freely distributable under the terms of an MIT-style license.

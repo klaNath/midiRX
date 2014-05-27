@@ -1,6 +1,6 @@
 /*
  *
- *  UART Controller for PIC12F1/16F1   Version 0.1
+ *  UART Controller for PIC12F1/16F1   Version 0.2
  *  (C) 2014 Kazusa Okuda (a.k.a. klaNath)
  *
  *  This software is freely distributable under the terms of an MIT-style license.
