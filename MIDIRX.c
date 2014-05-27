@@ -15,7 +15,7 @@
 
 enum DECODE_STATE
 {
-    NONE,
+    INITIAL_STATE,
     NOTE_ON_1,
     NOTE_ON_2,
     NOTE_OFF_1,
@@ -37,9 +37,8 @@ void getMIDI()
 
     rxd = readUART();
 
-    if(DecodeState == NONE)
+    if(DecodeState == INITIAL_STATE)
     {
-        Decoded = 0;
         Parse_Done = 0;
         switch(rxd & 0xF0)
         {
@@ -63,7 +62,7 @@ void getMIDI()
                                       break;
             case    0xF0    : DecodeState = SYSTEM_F;
                                       break;
-            default            : DecodeState = NONE;
+            default            : DecodeState = INITIAL_STATE;
         }
         if(DecodeState == SYSTEM_F)
         {
@@ -72,13 +71,13 @@ void getMIDI()
                 case    0x00    : DecodeState = SYSEX_ON;
                                           Decoded.MidiState = SYSEX;
                                           break;
-                case    0x07    : DecodeState = NONE;
+                case    0x07    : DecodeState = INITIAL_STATE;
                                           break;                            //End of SysEx. goto initial state
-                case    0x08    : DecodeState = NONE;
+                case    0x08    : DecodeState = INITIAL_STATE;
                                           break;                            //timing Clock. this implement has not difine.
-                case    0x0E    : DecodeState = NONE;
+                case    0x0E    : DecodeState = INITIAL_STATE;
                                           break;                            //Active Sense. this implement has not difine.
-                default            : DecodeState = NONE;
+                default            : DecodeState = INITIAL_STATE;
             }
         }
         return;
@@ -89,28 +88,28 @@ void getMIDI()
                                              DecodeState = NOTE_ON_2;
                                              break;
         case    NOTE_ON_2   : Decoded.MidiVel = rxd;
-                                             DecodeState = NONE;
-                                             if(Decoded.MidiVel = 0) Decoded.MidiState = NOTE_OFF;
+                                             DecodeState = INITIAL_STATE;
+                                             if(Decoded.MidiVel == 0) Decoded.MidiState = NOTE_OFF;
                                              Parse_Done = 1;
                                              break;
         case    NOTE_OFF_1  : Decoded.MidiNote = rxd;
                                              DecodeState = NOTE_OFF_2;
                                              break;
         case    NOTE_OFF_2  : Decoded.MidiVel = rxd;
-                                             DecodeState = NONE;
+                                             DecodeState = INITIAL_STATE;
                                              Parse_Done = 1;
                                              break;
-        case    SYSEX_ON      : if(rxd == 0xF7) DecodeState = NONE;
+        case    SYSEX_ON      : if(rxd == 0xF7) DecodeState = INITIAL_STATE;
                                              break;
-        case    OTHER2_1       : DecodeState = NONE; break;
+        case    OTHER2_1       : DecodeState = INITIAL_STATE; break;
         case    OTHER3_1       : DecodeState = OTHER3_2; break;
-        case    OTHER3_2       : DecodeState = NONE; break;
-        default                        : DecodeState = NONE;
+        case    OTHER3_2       : DecodeState = INITIAL_STATE; break;
+        default                        : DecodeState = INITIAL_STATE;
     }
     return;
 }
 
-MIDI_RX_STATUS getStatus()
+enum MIDI_RX_STATUS getMIDIStatus()
 {
     return(Decoded.MidiState);
 }
@@ -132,7 +131,10 @@ unsigned char getVel()
 
 void clearMIDI()
 {
-    Decoded = 0;
-    DecodeState = NONE;
+    Decoded.MidiState = NONE;
+    Decoded.MidiNote = 0;
+    Decoded.MidiCh = 0;
+    Decoded.MidiVel = 0;
+    DecodeState = INITIAL_STATE;
     Parse_Done = 0;
 }

@@ -38,21 +38,22 @@ void main(void)
 {
 
     unsigned char note, och;
-    MIDI_RX_STATUS state;
+    enum MIDI_RX_STATUS state;
 
     initSys();
 
     while(1)
     {
         if(rx_Done == 1) getMIDI();  
-        if(Parse_Done == 1)   state = getStatus();
+        if(Parse_Done == 1)   state = getMIDIStatus();
 
 
         if(state == NOTE_ON)
         {
             note = getNote();
-            och = getSendCh(0);
+            
 #ifndef __DEBUG
+            och = getSendCh(0);
             sendFM(note, och, 1);
 #endif
             PORTA = 0x04;
@@ -61,8 +62,9 @@ void main(void)
         else if(state == NOTE_OFF)
         {
             note = getNote();
+            
+#ifndef __DEBUG
             och = getSendCh(note);
-#ifndef
             sendFM(note, och, 0);
 #endif
             PORTA = 0;

@@ -18,9 +18,10 @@
 
 
 #include <xc.h>
+#include "UART.h"
 
 
-void initUART(UART_INIT_STATE argv)
+void initUART(enum UART_INIT_STATE argv)
 {
     if(argv == UART_RX_ONLY)
     {

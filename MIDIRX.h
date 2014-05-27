@@ -24,12 +24,6 @@ enum MIDI_RX_STATUS
     OTHER
 };
 
-enum MIDI_BUF_STATUS
-{
-    EMPTY,
-    VALID,
-    FULL
-};
 
 struct DECODED_DATA
 {
@@ -39,12 +33,11 @@ struct DECODED_DATA
                             MidiVel;
 };
 
-
-extern unsigned char Parse_Done;
+unsigned char Parse_Done;
 
 
 void getMIDI();
-enum MIDI_RX_STATUS getStatus();
+enum MIDI_RX_STATUS getMIDIStatus();
 unsigned char getChannel();
 unsigned char getNote();
 unsigned char getVel();
