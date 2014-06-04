@@ -8,10 +8,14 @@
  *
  */
 
-
 #include "MIDIRX.h"
+#ifdef __DEBUG
+#include "test.h"
+#endif
+#ifndef __DEBUG
 #include <xc.h>
 #include "UART.h"
+#endif
 
 enum DECODE_STATE
 {
@@ -44,11 +48,11 @@ void getMIDI()
         {
             case    0x90    : DecodeState = NOTE_ON_1;
                                       Decoded.MidiState = NOTE_ON;
-                                      Decoded.MidiCh = (rxd & 0xF0) >> 4;
+                                      Decoded.MidiCh = rxd & 0x0F;
                                       break;
             case    0x80    : DecodeState = NOTE_OFF_1;
                                       Decoded.MidiState = NOTE_OFF;
-                                      Decoded.MidiCh = (rxd & 0xF0) >> 4;
+                                      Decoded.MidiCh = rxd & 0x0F;
                                       break;
             case    0xA0    : DecodeState = OTHER3_1;
                                       break;
