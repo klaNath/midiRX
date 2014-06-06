@@ -76,10 +76,11 @@ void initSys()
 {
     OSCCON = 0xF2;
     OPTION_REG = 0xD0;
-    TRISA = 0x38;
+    TRISA = 0x28;
     ANSELA = 0;
     INTCON = 0xC0;
     PORTA = 0;
+    APFCON=0x80;
     //PIE1 = 0x20;                                                  //move to initUART()
 
     clearMIDI();
