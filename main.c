@@ -74,7 +74,7 @@ void main(void)
 
 void initSys()
 {
-    OSCCON = 0x0F2;
+    OSCCON = 0xF2;
     OPTION_REG = 0xD0;
     TRISA = 0x38;
     ANSELA = 0;
