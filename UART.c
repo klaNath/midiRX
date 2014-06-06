@@ -29,6 +29,7 @@ void initUART(enum UART_INIT_STATE argv)
         RCSTA = 0x90;
         BAUDCON = 0;
         SPBRGL = 15;
+        PIE1 = 0x20;
     }
     else
     {
