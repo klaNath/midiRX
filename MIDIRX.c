@@ -9,9 +9,9 @@
  */
 
 #include "MIDIRX.h"
-#ifdef __DEBUG
-#include "test.h"
-#endif
+//#ifdef __DEBUG
+//#include "test.h"
+//#endif
 #ifndef __DEBUG
 #include <xc.h>
 #include "UART.h"
