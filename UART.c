@@ -12,7 +12,7 @@
 /*
  *
  *  CAUTION!!!!
- * This library implemented only reciev function.
+ * This library implemented only recieve function.
  *
  */
 
@@ -25,19 +25,32 @@ void initUART(enum UART_INIT_STATE argv)
 {
     if(argv == UART_RX_ONLY)
     {
-        TXSTA = 0;
-        RCSTA = 0x90;
         BAUDCON = 0;
         SPBRGL = 15;
-        PIE1 = 0x20;
+        INTCONbits.PEIE = 1;
+        PIE1bits.RCIE = 1;
+        TXSTAbits.SYNC = 0;
+        RCSTAbits.SPEN = 1;
+        RCSTAbits.CREN = 1;
     }
     else
     {
         return;
     }
+
+    return;
 }
 
 unsigned char readUART()
 {
-    return(RCREG);
+    unsigned char RXData;
+    
+    RXData = RCREG;
+    if(RCSTAbits.OERR == 1)
+    {
+        RCSTAbits.CREN = 0;
+        RCSTAbits.CREN = 1;
+        return(0);
+    }
+    return(RXData);
 }
