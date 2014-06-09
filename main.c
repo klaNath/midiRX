@@ -16,9 +16,9 @@
 
 #define __DEBUG
 
-__CONFIG(CLKOUTEN_OFF & FOSC_INTOSC & FCMEN_OFF & IESO_OFF & BOREN_ON & PWRTE_ON
-& WDTE_OFF & MCLRE_OFF & CP_OFF & CPD_OFF) ;
-__CONFIG(PLLEN_ON & STVREN_ON & WRT_OFF & BORV_HI & LVP_OFF);
+__CONFIG(CLKOUTEN_OFF & FOSC_INTOSC & FCMEN_OFF  & IESO_OFF & BOREN_ON & PWRTE_ON
+& WDTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF) ;
+__CONFIG(PLLEN_ON & STVREN_OFF & WRT_OFF & BORV_LO & LVP_OFF);
 
 char rx_Done = 0;
 
@@ -29,8 +29,10 @@ void interrupt IRQ()
     if(PIR1bits.RCIF == 1)
     {
         rx_Done = 1;
-        PIR1bits.RCIF = 0;
+        PORTAbits.RA2 = ~PORTAbits.RA2;
     }
+
+    return;
 }
 
 
@@ -74,14 +76,13 @@ void main(void)
 
 void initSys()
 {
-    OSCCON = 0xF2;
-    OPTION_REG = 0xD0;
+    OSCCON = 0xF0;
+    OPTION_REG = 0x07;
     TRISA = 0x28;
     ANSELA = 0;
-    INTCON = 0xC0;
+    INTCONbits.GIE = 1;
     PORTA = 0;
     APFCON=0x80;
-    //PIE1 = 0x20;                                                  //move to initUART()
 
     clearMIDI();
     initUART(UART_RX_ONLY);
