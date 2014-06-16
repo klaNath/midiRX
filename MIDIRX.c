@@ -70,9 +70,9 @@ void getMIDI(unsigned char rxd)
                 case    0x07    : DecodeState = INITIAL_STATE;
                                           break;                            //End of SysEx. goto initial state
                 case    0x08    : DecodeState = INITIAL_STATE;
-                                          break;                            //timing Clock. this implement has not difine.
+                                          break;                            //timing Clock. this implement has not difined.
                 case    0x0E    : DecodeState = INITIAL_STATE;
-                                          break;                            //Active Sense. this implement has not difine.
+                                          break;                            //Active Sense. this implement has not difined.
                 default            : DecodeState = INITIAL_STATE;
             }
         }

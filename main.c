@@ -47,6 +47,7 @@ void main(void)
 
     while(1)
     {
+        state = 0;
         if(rxd != 0) getMIDI(rxd);
         if(Parse_Done == 1)   state = getMIDIStatus();
 
