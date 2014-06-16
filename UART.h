@@ -16,6 +16,8 @@
  *
  */
 
+#include <xc.h>
+
 #ifndef _UART_H
 #define _UART_H
 
@@ -28,6 +30,8 @@ enum UART_INIT_STATE
 };
 
 void initUART(enum UART_INIT_STATE);
+
+unsigned char checkRXUART();
 
 unsigned char readUART();
 

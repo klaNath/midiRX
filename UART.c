@@ -41,6 +41,10 @@ void initUART(enum UART_INIT_STATE argv)
     return;
 }
 
+unsigned char checkRXUART()
+{
+    return(0);
+}
 unsigned char readUART()
 {
     unsigned char RXData;
