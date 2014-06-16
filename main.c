@@ -20,7 +20,7 @@ __CONFIG(CLKOUTEN_OFF & FOSC_INTOSC & FCMEN_OFF  & IESO_OFF & BOREN_ON & PWRTE_O
 & WDTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF) ;
 __CONFIG(PLLEN_ON & STVREN_OFF & WRT_OFF & BORV_LO & LVP_OFF);
 
-char rx_Done = 0;
+unsigned char rxd;
 
 void initSys(void);
 
@@ -28,8 +28,9 @@ void interrupt IRQ()
 {
     if(PIR1bits.RCIF == 1)
     {
-        rx_Done = 1;
-        PORTAbits.RA2 = ~PORTAbits.RA2;
+
+        rxd = readUART();
+        PORTAbits.RA2 = 1;
     }
 
     return;
@@ -46,7 +47,7 @@ void main(void)
 
     while(1)
     {
-        if(rx_Done == 1) getMIDI();  
+        if(rxd != 0) getMIDI(rxd);
         if(Parse_Done == 1)   state = getMIDIStatus();
 
 
@@ -69,13 +70,14 @@ void main(void)
             och = getSendCh(note);
             sendFM(note, och, 0);
 #endif
-            PORTA = 0;
+            PORTAbits.RA0 = 0;
         }
     }
 }
 
 void initSys()
 {
+    rxd = 0;
     OSCCON = 0xF0;
     OPTION_REG = 0x07;
     TRISA = 0x28;

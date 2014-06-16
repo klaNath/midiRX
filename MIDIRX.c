@@ -34,12 +34,8 @@ enum DECODE_STATE
 
 struct DECODED_DATA Decoded;
 
-void getMIDI()
+void getMIDI(unsigned char rxd)
 {
-
-    unsigned char rxd;
-
-    rxd = readUART();
 
     if(DecodeState == INITIAL_STATE)
     {
