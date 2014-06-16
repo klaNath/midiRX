@@ -36,7 +36,7 @@ struct DECODED_DATA
 unsigned char Parse_Done;
 
 
-void getMIDI();
+void getMIDI(unsigned char);
 enum MIDI_RX_STATUS getMIDIStatus();
 unsigned char getChannel();
 unsigned char getNote();
