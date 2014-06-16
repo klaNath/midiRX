@@ -7,3 +7,18 @@
  *  For details, see the https://github.com/klaNath/midiRX.git/LICENSE
  *
  */
+
+#include <xc.h>
+
+
+void initSPI(enum SPI_INIT_STATE initstate)
+{
+    switch(initstate)
+    {
+    case SPI_TX_ONLY:   SSP1STAT = 0;
+                        SSP1CON1bits.SSPM0 = 1;
+                        SSP1CON1bits.SSPEN = 1;
+                        break;
+    default:            break;
+    }
+}
