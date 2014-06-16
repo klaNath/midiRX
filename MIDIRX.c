@@ -81,7 +81,7 @@ void getMIDI(unsigned char rxd)
     switch(DecodeState)
     {
         case    NOTE_ON_1   : Decoded.MidiNote = rxd;
-                                             DecodeState = NOTE_ON_2;
+                                         DecodeState = NOTE_ON_2;
                                              break;
         case    NOTE_ON_2   : Decoded.MidiVel = rxd;
                                              DecodeState = INITIAL_STATE;
