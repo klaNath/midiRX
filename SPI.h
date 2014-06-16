@@ -8,7 +8,14 @@
  *
  */
 
-
+/*
+ *
+ *
+ *	Caution! This Library implement only Sending
+ *	Another function is not prepared.
+ *
+ *
+ */
 
 #ifndef _SPI_H
 #define _SPI_H
