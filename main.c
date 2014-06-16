@@ -1,6 +1,6 @@
 /*
  *
- *  MIDI Reciever and FM Audio Generator Controller Firmware  Version 0.2
+ *  MIDI Reciever and FM Audio Generator Controller Firmware  Version 0.3
  *  (C) 2014 Kazusa Okuda (a.k.a. klaNath)
  *
  *  This software is freely distributable under the terms of an MIT-style license.
@@ -30,7 +30,7 @@ void interrupt IRQ()
     {
 
         rxd = readUART();
-        //PORTAbits.RA2 = 1;
+        PORTAbits.RA2 = 0;
     }
 
     return;
@@ -71,7 +71,7 @@ void main(void)
             och = getSendCh(note);
             sendFM(note, och, 0);
 #endif
-            PORTAbits.RA2 = 0;
+            PORTAbits.RA2 = 1;
         }
     }
 }
