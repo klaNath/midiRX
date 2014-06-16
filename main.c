@@ -30,7 +30,7 @@ void interrupt IRQ()
     {
 
         rxd = readUART();
-        PORTAbits.RA2 = 1;
+        //PORTAbits.RA2 = 1;
     }
 
     return;
@@ -60,7 +60,7 @@ void main(void)
             och = getSendCh(0);
             sendFM(note, och, 1);
 #endif
-            PORTA = 0x04;
+            PORTAbits.RA2 = 1;
 
         }
         else if(state == NOTE_OFF)
@@ -71,7 +71,7 @@ void main(void)
             och = getSendCh(note);
             sendFM(note, och, 0);
 #endif
-            PORTAbits.RA0 = 0;
+            PORTAbits.RA2 = 0;
         }
     }
 }
