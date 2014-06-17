@@ -11,7 +11,7 @@
 /*
  *
  *
- *	Caution! This Library implement only Sending
+ *	Caution! This Library implement only MASTER MODE
  *	Another function is not prepared.
  *
  *
@@ -23,16 +23,15 @@
 enum SPI_INIT_STATE
 {
 	SPI_NONE,
-	SPI_BOTH,
-	SPI_RX_ONLY,
-	SPI_TX_ONLY
+	SPI_MASTER,
+	SPI_SLAVE
 };
 
 void initSPI(enum SPI_INIT_STATE);
 
 unsigned char getSPI();
-unsigned char sendSingleSPI(unsigned char);
-unsigned char sendMultiSPI(unsigned char*, unsigned char);
+void sendSingleSPI(unsigned char);
+void sendMultiSPI(unsigned char*, unsigned char);
 
 
 #endif
