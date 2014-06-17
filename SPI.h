@@ -7,3 +7,31 @@
  *  For details, see the https://github.com/klaNath/midiRX.git/LICENSE
  *
  */
+
+/*
+ *
+ *
+ *	Caution! This Library implement only MASTER MODE
+ *	Another function is not prepared.
+ *
+ *
+ */
+
+#ifndef _SPI_H
+#define _SPI_H
+
+enum SPI_INIT_STATE
+{
+	SPI_NONE,
+	SPI_MASTER,
+	SPI_SLAVE
+};
+
+void initSPI(enum SPI_INIT_STATE);
+
+unsigned char getSPI();
+void sendSingleSPI(unsigned char);
+void sendMultiSPI(unsigned char*, unsigned char);
+
+
+#endif

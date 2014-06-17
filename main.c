@@ -12,9 +12,8 @@
 #include "MIDIRX.h"
 #include "fm1001.h"
 
-#define SYS_FREQ 32000000
+#define _XTAL_FREQ 32000000
 
-#define __DEBUG
 
 __CONFIG(CLKOUTEN_OFF & FOSC_INTOSC & FCMEN_OFF  & IESO_OFF & BOREN_ON & PWRTE_ON
 & WDTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF) ;
@@ -28,7 +27,6 @@ void interrupt IRQ()
 {
     if(PIR1bits.RCIF == 1)
     {
-
         rxd = readUART();
         PORTAbits.RA2 = 0;
     }
@@ -51,26 +49,19 @@ void main(void)
         if(rxd != 0) getMIDI(rxd);
         if(Parse_Done == 1)   state = getMIDIStatus();
 
-
         if(state == NOTE_ON)
         {
             note = getNote();
-            
-#ifndef __DEBUG
             och = getSendCh(0);
             sendFM(note, och, 1);
-#endif
             PORTAbits.RA2 = 1;
 
         }
         else if(state == NOTE_OFF)
         {
             note = getNote();
-            
-#ifndef __DEBUG
             och = getSendCh(note);
             sendFM(note, och, 0);
-#endif
             PORTAbits.RA2 = 1;
         }
     }
@@ -89,8 +80,7 @@ void initSys()
 
     clearMIDI();
     initUART(UART_RX_ONLY);
-#ifndef __DEBUG
     initFM();
-#endif
+
 }
 
