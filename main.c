@@ -53,7 +53,7 @@ void main(void)
         {
             note = getNote();
             och = getSendCh(0);
-            sendFM(note, och, 1);
+            sendFM(och, note, 1);
             PORTAbits.RA2 = 1;
 
         }
@@ -61,7 +61,7 @@ void main(void)
         {
             note = getNote();
             och = getSendCh(note);
-            sendFM(note, och, 0);
+            sendFM(och, note, 0);
             PORTAbits.RA2 = 1;
         }
     }
@@ -80,7 +80,7 @@ void initSys()
 
     clearMIDI();
     initUART(UART_RX_ONLY);
-    initFM();
+    initFM(1);
 
 }
 
